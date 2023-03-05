@@ -1,3 +1,4 @@
+import org.example.MyLogger;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -10,10 +11,11 @@ public class BubbleSortTest {
     @Test
     void testFun() {
         ArrayList<Integer> testList = new ArrayList<>();
+        MyLogger myLogger = new MyLogger();
         testList.add(3);
         testList.add(2);
         testList.add(1);
-        ArrayList<Integer> actual = bubbleSort(testList);
+        ArrayList<Integer> actual = bubbleSort(testList, myLogger);
         ArrayList<Integer> expected = new ArrayList<>();
         expected.add(1);
         expected.add(2);

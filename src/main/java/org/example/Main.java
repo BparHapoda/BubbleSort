@@ -6,8 +6,13 @@ import java.util.Random;
 public class Main {
     public static void main(String[] args) {
         ArrayList<Integer> result;
+        MyLogger logger = new MyLogger();
+        Thread loggerThread = new Thread(logger);
+        loggerThread.setDaemon(true);
+        loggerThread.start();
+
         System.out.println(result = getRandomList(25, 1, 100));
-        System.out.println(bubbleSort(result));
+        System.out.println(bubbleSort(result, logger));
     }
 
     public static ArrayList<Integer> getRandomList(int n, int min, int max) {
@@ -20,7 +25,7 @@ public class Main {
         return list;
     }
 
-    public static ArrayList<Integer> bubbleSort(ArrayList<Integer> list) {
+    public static ArrayList<Integer> bubbleSort(ArrayList<Integer> list, MyLogger logger) {
         int count = 1;
         int temp;
         while (count > 0) {
@@ -30,6 +35,7 @@ public class Main {
                     temp = list.get(i);
                     list.set(i, list.get(i + 1));
                     list.set(i + 1, temp);
+                    logger.addToQue(list.toString());
                     count++;
                 }
             }
